@@ -19,7 +19,13 @@ module.exports= (sequelize, DataTypes) =>{
              'Diploma Cyber Security'
             ),
             allowNull: false,
-        }
+        },
+        // student_id: {
+        //     type: DataTypes.INTEGER,
+        //     primaryKey: true,
+        //     autoIncrement: true
+        // }
+
     });
 
     return Course
