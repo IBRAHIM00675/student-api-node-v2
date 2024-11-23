@@ -5,6 +5,7 @@ const  helmet = require('helmet');
 const cors = require('cors')
 const studentRoutes = require("./routes/studentRoutes");
 const courseRoutes = require("./routes/courseRoutes");
+const authRoute = require("./routes/authRoute")
 const app = express();
 
 
@@ -29,7 +30,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use("/api",studentRoutes);
-app.use("/api", courseRoutes)
+app.use("/api", courseRoutes);
+app.use("/api", authRoute)
 
 
 // 404 handler
