@@ -16,7 +16,11 @@ module.exports =(sequelize, DataTypes) =>{
         password:{
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+        // role:{
+        //     type: DataTypes.STRING,
+        //     allowNull: true
+        // }
     });
 
     // function to hash password before saving...............
