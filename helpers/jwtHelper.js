@@ -3,18 +3,18 @@ const createError = require("http-errors");
 
 
 module.exports = {
-    signAccessToken:(UserId)=>{
+    signAccessToken: (UserId, userRole) =>{
         return new Promise((resolve, reject)=>{
-            const payload ={}
-            const secret = process.env.ACCESS_TOKEN_SECRET;
+            const payload = {UserId, role:userRole}
+            const secret = process.env.ACCESS_TOKEN_SECRET
             const options = {
-                expiresIn: "10m",
-                issuer: "IbraTechnologies.com",
-                audience: UserId,
+                expiresIn: '15m',
+                issuer: 'ibrahim',
+                audience: String(UserId)
             }
             JWT.sign(payload, secret, options, (error, token)=>{
                 if(error) reject(error);
-                resolve(token);
+                resolve(token)
             })
         })
     },
@@ -42,7 +42,7 @@ module.exports = {
             const options ={
                 expiresIn: '1y',
                 issuer: 'IbraTechnologies.com',
-                audience: UserId,
+                audience:  `${UserId}`,
             }
             JWT.sign(payload, secret, options, (error, token)=>{
                 if(error) {
@@ -60,9 +60,20 @@ module.exports = {
                 if(err) return reject(createError.Unauthorized())
                 const userId = payload.aud
 
-                resolve(userId)
+                resolve(`${userId}`)
             })
         })
+    },
+
+    restrict: (...allowedRoles) =>{
+        return(req, res, next)=>{
+            const userRole = req.payload.role
+
+            if(!userRole || allowedRoles.includes(userRole)){
+                return next(createError.Forbidden('Sorry! You do not have permission to perform this action'))
+            }
+            next()
     }
+  }
 }
 
