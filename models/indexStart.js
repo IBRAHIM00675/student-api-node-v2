@@ -15,7 +15,7 @@ sequelize.authenticate()
 .then(()=>{
     console.log("Database connection successfully");
 })
-.then((err)=> {
+.catch((err)=> {
     console.log("Error" + err);
 })
 
@@ -37,7 +37,7 @@ db.sequelize.sync({force: false})
 
 
 // db.courses.hasOne(db.students)
-db.students.belongsTo(db.courses, { foreignkey: "course_id"});
+db.students.belongsTo(db.courses, { foreignKey: "course_id"});
 
 module.exports = db
 
