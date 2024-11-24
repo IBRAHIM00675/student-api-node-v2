@@ -42,7 +42,7 @@ module.exports = {
             const options ={
                 expiresIn: '1y',
                 issuer: 'IbraTechnologies.com',
-                audience:  `${UserId}`,
+                audience: String(UserId) ,
             }
             JWT.sign(payload, secret, options, (error, token)=>{
                 if(error) {
@@ -60,7 +60,7 @@ module.exports = {
                 if(err) return reject(createError.Unauthorized())
                 const userId = payload.aud
 
-                resolve(`${userId}`)
+                resolve(userId)
             })
         })
     },
