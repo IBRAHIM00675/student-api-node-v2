@@ -170,43 +170,43 @@ getStudent: async (req, res, next) => {
     }
 },
 
-// getAllStudentwithCourse: async (req, res, next) => {
-//     try {
-//         const students = await Student.findAll({
-//             include: {
-//                 model: Course,
-//                 as: "course",
-//                 attributes: ["coursename"],
-//             },
-//         });
+getAllStudentwithCourse: async (req, res, next) => {
+    try {
+        const students = await Student.findAll({
+            include: {
+                model: Course,
+                as: "course",
+                attributes: ["coursename"],
+            },
+        });
 
-//         res.status(200).send(students);
-//     } catch (error) {
-//         next(error);
-//     }
-// },
-// getOneStudentWithCourse: async (req, res, next) => {
-//     try {
-//         const { student_id } = req.params;
+        res.status(200).send(students);
+    } catch (error) {
+        next(error);
+    }
+},
+getOneStudentWithCourse: async (req, res, next) => {
+    try {
+        const { student_id } = req.params;
 
-//         const student = await Student.findOne({
-//             where: { student_id },
-//             include: {
-//                 model: Course,
-//                 as: "course",
-//                 attributes: ["coursename"],
-//             },
-//         });
+        const student = await Student.findOne({
+            where: { student_id },
+            include: {
+                model: Course,
+                as: "course",
+                attributes: ["coursename"],
+            },
+        });
 
-//         if (!student) {
-//             throw createError(404, "Student does not exist");
-//         }
+        if (!student) {
+            throw createError(404, "Student does not exist");
+        }
 
-//         res.status(200).send(student);
-//     } catch (error) {
-//         next(error);
-//     }
-// },
+        res.status(200).send(student);
+    } catch (error) {
+        next(error);
+    }
+},
 
 updateStudent: async (req, res, next) => {
     try {
