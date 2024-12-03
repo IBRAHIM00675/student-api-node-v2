@@ -1,18 +1,17 @@
-const express = require('express');
-// routes to setup our routes
-const routes = express.Router();
-const { verifyAccessToken } = require('../helpers/jwtHelper');
-const authController = require('../controllers/authController');
+const express = require('express')
+const routes = express.Router()
+const authController = require('../controllers/authController')
 
+routes.post('/register', authController.register)
 
-// add a user (REGISTER) to the DB
-routes.post('/register' , authController.addUser);
+routes.get('/getAllUser', authController.getAllUser)
 
-// login a user
-routes.post('/loginUser', authController.loginUser);
+routes.get('/getUserById/:user_id', authController.getUserById)
 
-// get all users
-routes.get("/getAllUsers", authController.getAllUsers)
+routes.patch('/updateUser/:user_id', authController.updateUser)
 
+routes.delete('/deleteUser/:user_id', authController.deleteUser)
 
-module.exports = routes;
+routes.post('/login', authController.login)
+
+module.exports = routes

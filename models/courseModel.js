@@ -20,11 +20,7 @@ module.exports= (sequelize, DataTypes) =>{
             ),
             allowNull: false,
         },
-        // student_id: {
-        //     type: DataTypes.INTEGER,
-        //     primaryKey: true,
-        //     autoIncrement: true
-        // }
+       
 
     });
 

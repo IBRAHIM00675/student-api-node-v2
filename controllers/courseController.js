@@ -12,11 +12,11 @@ module.exports = {
                 coursename: req.body.coursename
             }
 
-            if(!['Certificate Software Development', 'Diploma Software Development', 
-                'Certificate Cyber Security', 'Diploma Cyber Security'].includes(info.coursename)){
-                    throw(createError(400), 'invalid coursename value')
-                }
-
+            if (!['Certificate Software Development', 'Diploma Software Development', 
+                'Certificate Cyber Security', 'Diploma Cyber Security'].includes(info.coursename)) {
+               throw(createError(400, 'Invalid coursename value'));
+           }
+           
             const course = await Course.create(info)
             res.status(200).send(course)
         }
@@ -57,7 +57,7 @@ module.exports = {
             }
 
             if(!['Certificate Software Development', 'Diploma Software Development', 
-                'Certificate Cyber Security', 'Diploma Cyber Security'].includes(updatedInfo)){
+                'Certificate Cyber Security', 'Diploma Cyber Security'].includes(updatedInfo.coursename)){
                     throw(createError(400), 'invalid coursename value')
                 }
 

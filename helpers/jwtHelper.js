@@ -69,7 +69,7 @@ module.exports = {
         return(req, res, next)=>{
             const userRole = req.payload.role
 
-            if(!userRole || allowedRoles.includes(userRole)){
+            if(!userRole || !allowedRoles.includes(userRole)){
                 return next(createError.Forbidden('Sorry! You do not have permission to perform this action'))
             }
             next()

@@ -21,7 +21,11 @@ module.exports= (sequelize, DataTypes) =>{
       },
       course_id: {
           type: DataTypes.INTEGER,
-          allowNull: true
+          allowNull: true,
+          references: {
+            model: "Courses", // Must match the name of your Course table
+            key: "course_id"
+        },
       }
   });
 

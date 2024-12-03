@@ -12,7 +12,7 @@ const app = express();
 // helmet
 app.use(helmet());
 const limiter = limit ({
-    max: '100',
+    max: 100,
     windowMs: 60 * 60 * 1000,
     message: 'Too many  request from this IP, try again in an hour'
 });
@@ -55,6 +55,6 @@ app.use((err, req, res, next)=>{
 
 
 // setting up a server
-app.listen(process.env.port || 4000, function () {
+app.listen(process.env.PORT || 4000, function () {
     console.log("Now listening for request on http://localhost:4000")
 });
